@@ -9,11 +9,28 @@
  */
 
 // ↓ uncomment bellow lines and add your response!
-/*
+
 export default function ({ groups }: { groups: Group[] }): GroupWithSills[] {
-    return [];
+    return groups.map(group => {
+        const uniqueSkills: string[] = [];
+
+        group.students.forEach(student => {
+            student.skills.forEach(skill => {
+                if (!uniqueSkills.includes(skill)) {
+                    uniqueSkills.push(skill);
+                }
+            });
+        });
+
+        uniqueSkills.sort();
+
+        return {
+            ...group,
+            skills: uniqueSkills
+        };
+    });
 }
-*/
+
 
 // used interfaces, do not touch
 interface Student {
